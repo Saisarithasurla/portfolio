@@ -2,28 +2,20 @@
 import React from "react";
 import { Github, Linkedin } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 function Home() {
   return (
     <section className="flex flex-col w-screen md:flex-row   items-center justify-between min-h-screen px-10 md:px-20 py-16 bg-linear-to-r from-blue-500 to-purple-600 text-white">
-      <motion.div
-        className="flex-1 flex flex-col gap-6"
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
+      <motion.div className="flex-1 flex flex-col gap-6" initial={{ x: -100, opacity: 0 }}animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1 }}>
         <h1 className="text-4xl md:text-5xl font-bold ml-52 -mt-28">
           Hi, I'm <br />
           <span className="text-black text-4xl">Surla Sai Saritha</span>
         </h1>
-
-        <h2 className="text-6xl md:text-3xl font-bold text-red-700 ml-52">
-          <TypeAnimation
-            sequence={[
-              "Full Stack Python Developer",
-              2000,
-            ]}
+<h2 className="text-6xl md:text-3xl font-bold text-red-700 ml-52">
+          <TypeAnimation sequence={["Full Stack Python Developer",2000,]}
             speed={30}
             wrapper="span"
             repeat={Infinity}
@@ -42,17 +34,17 @@ function Home() {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <a
-            href="saritha_Resume.pdf"
+            href="final_resume.pdf"
             className="bg-red-500 text-white px-5  ml-28 py-2 rounded-lg shadow-md hover:bg-red-600 transition"
           >
             Download CV
           </a>
-          <a
-            href="projects"
-            className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-900 transition"
-          >
-            See My Projects
-          </a>
+          <Link
+  to="/projects"
+  className="bg-black text-white px-5 py-2 rounded-lg shadow-md hover:bg-gray-900 transition"
+>
+  See My Projects
+</Link>
           <a
             href="https://github.com/Saisarithasurla"
             className="bg-gray-800 text-white p-3 rounded-full hover:bg-gray-700 transition"

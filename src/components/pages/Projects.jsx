@@ -42,7 +42,7 @@ const cardVariants = {
 };
 function Projects() {
   return (
-    <div className="py-2 px-6  bg-gradient-to-br from-[#c7d2fe] via-[#e0e7ff] to-[#f3e8ff] min-h-screen w-screen">
+    <div className="py-2 px-6  bg-linear-to-br from-[#c7d2fe] via-[#e0e7ff] to-[#f3e8ff] min-h-screen w-screen">
       <motion.h1 initial={{ opacity: 0, y: -40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
         className="text-5xl text-center text-purple-700 font-bold mb-12 mt-10">My Projects  </motion.h1>
       <motion.div variants={containerVariants} initial="hidden" animate="visible"
