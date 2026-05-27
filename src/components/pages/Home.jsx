@@ -23,9 +23,7 @@ function Home() {
         </h2>
 
         <p className="text-gray-200 max-w-xl ml-52 ">
-          Mechanical Engineering graduate transitioning into a Full Stack Python
-          Developer skilled in Python, Django, and React. Passionate about building
-          responsive web applications and scalable backend systems using modern technologies.
+          Full-Stack Python Developer with hands-on experience in building responsive web applications and REST APIs using React.js and Django. Passionate about developing scalable applications with strong problem-solving and debugging skills.
         </p>
         <motion.div
           className="flex flex-wrap gap-4 mt-4 items-center ml-24"

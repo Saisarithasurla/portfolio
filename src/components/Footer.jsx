@@ -17,7 +17,7 @@ const Footer = () => {
             Quick Links
           </h3>
           <ul className="space-y-2">
-            <li><a href="/home" className="hover:text-cyan-400 transition">Home</a></li>
+            <li><a href="/" className="hover:text-cyan-400 transition">Home</a></li>
             <li><a href="/about" className="hover:text-cyan-400 transition">About</a></li>
             <li><a href="/projects" className="hover:text-cyan-400 transition">Projects</a></li>
             <li><a href="/contact" className="hover:text-cyan-400 transition">Contact</a></li>
