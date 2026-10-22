@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, GraduationCap, Code, CheckCircle, Sparkles } from 'lucide-react';
+import { Award, GraduationCap, Code, CheckCircle, Sparkles, ExternalLink } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export const EducationAndCerts = ({ educationData, certifications, codingProfiles }) => {
@@ -77,18 +77,29 @@ export const EducationAndCerts = ({ educationData, certifications, codingProfile
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {codingProfiles.map((item, idx) => (
-                  <div
+                  <a
                     key={idx}
-                    className="p-4 rounded-xl bg-slate-50 border border-slate-200 hover:border-indigo-300 transition flex flex-col justify-between"
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="group p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/60 border border-slate-200 hover:border-indigo-300 transition-all flex flex-col justify-between shadow-xs hover:shadow-md cursor-pointer"
                   >
                     <div>
-                      <div className="font-bold text-base text-slate-900">{item.name}</div>
-                      <div className="text-xs text-slate-500 mt-1">{item.description}</div>
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-base text-slate-900 group-hover:text-indigo-600 transition-colors">
+                          {item.name}
+                        </span>
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-indigo-600 transition-colors" />
+                      </div>
+                      <div className="text-xs text-slate-500 mt-1 leading-relaxed">
+                        {item.description}
+                      </div>
                     </div>
-                    <div className="mt-3 flex items-center gap-1 text-xs font-bold text-indigo-600">
-                      <span>Active</span>
+                    <div className="mt-3 flex items-center gap-1.5 text-xs font-bold text-indigo-600">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                      <span>View Profile</span>
                     </div>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>

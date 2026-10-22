@@ -1,20 +1,21 @@
 // Model: Portfolio Data Model based on Sai Saritha's Resume
 export const personalInfo = {
   name: "Surla Sai Saritha",
-  title: "Full Stack Python Developer",
+  title: "Full Stack Developer",
   tagline: "Building scalable web & cross-platform mobile apps with Python, React & Modern Cloud architectures.",
   phone: "+91-9390234442",
   email: "surlasaritha@gmail.com",
   location: "India",
   github: "https://github.com/Saisarithasurla",
-  linkedin: "https://www.linkedin.com/in/sai-saritha-surla",
+  linkedin: "https://www.linkedin.com/in/surla-sai-saritha-b2736a260/",
+  resumeUrl: "/final_resume.pdf",
   stats: [
     { label: "Months Internship Exp", value: "4+" },
     { label: "Full-Stack & Mobile Projects", value: "4+" },
     { label: "B.Tech CGPA", value: "8.95" },
     { label: "Core Technologies", value: "15+" }
   ],
-  about: `I am a Full Stack Python Developer with hands-on experience in building responsive web and mobile applications using Python, Django REST Framework, React.js, React Native, Next.js, and Tailwind CSS. Experienced in developing secure REST APIs, seamlessly integrating frontend and backend systems, and architecting database solutions with PostgreSQL (Supabase), MySQL, and MongoDB. Recently completed a 4-month Full Stack Developer Internship at Solinix Tech contributing to real-time client applications in Agile workflows. Passionate about scalable, user-centric software.`
+  about: `I am a Full Stack Developer with hands-on experience in building responsive web and mobile applications using Python, Django REST Framework, React.js, React Native, Next.js, and Tailwind CSS. Experienced in developing secure REST APIs, seamlessly integrating frontend and backend systems, and architecting database solutions with PostgreSQL (Supabase), MySQL, and MongoDB. Recently completed a 4-month Full Stack Developer Internship at Solinix Tech contributing to real-time client applications in Agile workflows. Passionate about scalable, user-centric software.`
 };
 
 export const skillsData = {
@@ -99,8 +100,8 @@ export const projects = [
       "Implemented dynamic property search, filtering, and responsive user interfaces with Tailwind CSS.",
       "Deployed and optimized for high performance and smooth responsiveness across mobile, tablet, and desktop."
     ],
-    liveUrl: "https://github.com/Saisarithasurla",
-    githubUrl: "https://github.com/Saisarithasurla"
+    liveUrl: "https://pgmove.in",
+    githubUrl: null
   },
   {
     id: "stayzy",
@@ -117,8 +118,8 @@ export const projects = [
       "Collaborated with cross-functional teams in an Agile sprint-based environment.",
       "Participated in comprehensive testing, debugging, and production feature rollouts."
     ],
-    liveUrl: "https://github.com/Saisarithasurla",
-    githubUrl: "https://github.com/Saisarithasurla"
+    liveUrl: "https://stayzzy.in/",
+    githubUrl: null
   },
   {
     id: "brainspark",
@@ -135,8 +136,8 @@ export const projects = [
       "Managed relational database operations with MySQL alongside extensive API endpoint testing in Postman.",
       "Streamlined platform speed and query efficiency through targeted debugging and code optimization."
     ],
-    liveUrl: "https://github.com/Saisarithasurla",
-    githubUrl: "https://github.com/Saisarithasurla"
+    liveUrl: "https://brainspark-ai-saritha.netlify.app/",
+    githubUrl: "https://github.com/Saisarithasurla/Brainspark-ai-generator"
   },
   {
     id: "social-media-analysis",
@@ -152,8 +153,8 @@ export const projects = [
       "Identified critical trends connecting night-time screen exposure, sleep disruption, and GPA variance.",
       "Produced actionable insights and comprehensive analytical documentation for academic review."
     ],
-    liveUrl: "https://github.com/Saisarithasurla",
-    githubUrl: "https://github.com/Saisarithasurla"
+    liveUrl: null,
+    githubUrl: "https://github.com/Saisarithasurla/MYSQL_notes-Project/tree/main/PROJECT"
   }
 ];
 
@@ -202,7 +203,7 @@ export const certifications = [
 ];
 
 export const codingProfiles = [
-  { name: "LeetCode", url: "https://leetcode.com", description: "Data structures & problem solving" },
-  { name: "HackerRank", url: "https://hackerrank.com", description: "Python & SQL challenges" },
-  { name: "CodeChef", url: "https://codechef.com", description: "Algorithmic competitions" }
+  { name: "LeetCode", url: "https://leetcode.com/u/surla-sai-saritha/", description: "Data structures & problem solving" },
+  { name: "HackerRank", url: "https://www.hackerrank.com/profile/surlasaritha", description: "Python & SQL challenges" },
+  { name: "CodeChef", url: "https://www.codechef.com/users/sai_saritha", description: "Algorithmic competitions" }
 ];

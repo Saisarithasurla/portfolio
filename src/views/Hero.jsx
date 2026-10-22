@@ -65,11 +65,15 @@ export const Hero = ({ personalInfo, scrollTo }) => {
               </button>
 
               <a
-                href={`mailto:${personalInfo.email}?subject=Full%20Stack%20Developer%20Opportunity`}
-                className="px-4 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 transition-all flex items-center gap-2 text-sm font-medium"
+                href={personalInfo.resumeUrl || "/final_resume.pdf"}
+                target="_blank"
+                rel="noreferrer"
+                download="Sai_Saritha_Surla_Resume.pdf"
+                className="px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 transition-all flex items-center gap-2 text-sm font-semibold cursor-pointer shadow-xs"
+                title="Download Resume"
               >
-                <Download className="w-4 h-4" />
-                <span>Resume / Inquire</span>
+                <Download className="w-4 h-4 text-indigo-600" />
+                <span>Download Resume</span>
               </a>
             </div>
 

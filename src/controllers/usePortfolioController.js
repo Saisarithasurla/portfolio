@@ -69,13 +69,26 @@ export function usePortfolioController() {
     }, 900);
   };
 
-  // Scroll to section helper
+  // Scroll to section helper with accurate navbar offset
   const scrollTo = (id) => {
     setActiveSection(id);
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      // Find any inner reveal-item and immediately reveal it
+      const revealChild = element.querySelector('.reveal-item');
+      if (revealChild) {
+        revealChild.classList.add('revealed');
+      }
+
+      const navHeight = 85;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = elementPosition - navHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 

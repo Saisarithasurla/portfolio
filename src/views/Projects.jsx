@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   ExternalLink, 
   ArrowUpRight, 
@@ -18,6 +18,26 @@ export const Projects = ({
   setSelectedProject
 }) => {
   const [ref, isVisible] = useScrollReveal();
+
+  // Prevent background scroll and allow ESC key close when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      const originalStyle = window.getComputedStyle(document.body).overflow;
+      document.body.style.overflow = 'hidden';
+
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setSelectedProject(null);
+        }
+      };
+
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = originalStyle;
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    }
+  }, [selectedProject, setSelectedProject]);
 
   return (
     <section id="projects" className="py-20 bg-slate-100/50 relative">
@@ -78,24 +98,28 @@ export const Projects = ({
                   </div>
                   
                   <div className="flex items-center gap-2">
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition"
-                      title="GitHub Repository"
-                    >
-                      <Icons.Github className="w-4 h-4" />
-                    </a>
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="p-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 transition"
-                      title="Live Demo"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
+                    {project.githubUrl && (
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 transition"
+                        title="GitHub Repository"
+                      >
+                        <Icons.Github className="w-4 h-4" />
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="p-2 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 transition"
+                        title="Live Demo"
+                      >
+                        <ExternalLink className="w-4 h-4" />
+                      </a>
+                    )}
                   </div>
                 </div>
 
@@ -148,62 +172,70 @@ export const Projects = ({
           ))}
         </div>
 
-        {/* Interactive Project Modal */}
-        {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-            <div className="bg-white max-w-2xl w-full rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xl relative max-h-[90vh] overflow-y-auto">
-              
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="absolute top-5 right-5 p-2 rounded-xl text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 transition"
-                aria-label="Close modal"
-              >
-                <X className="w-5 h-5" />
-              </button>
+      </div>
 
-              <div className="inline-block px-3 py-1 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-700 mb-2 border border-indigo-100">
-                {selectedProject.category} • {selectedProject.tagline}
+      {/* Interactive Project Modal placed outside reveal container so it is fixed directly to screen */}
+      {selectedProject && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm modal-backdrop-anim"
+          onClick={() => setSelectedProject(null)}
+        >
+          <div 
+            className="bg-white max-w-2xl w-full rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-2xl relative max-h-[90vh] overflow-y-auto modal-content-anim my-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 transition cursor-pointer"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="inline-block px-3 py-1 rounded-lg text-xs font-bold bg-indigo-50 text-indigo-700 mb-2 border border-indigo-100">
+              {selectedProject.category} • {selectedProject.tagline}
+            </div>
+
+            <h3 className="text-2xl font-bold text-slate-900 mb-3 pr-10">
+              {selectedProject.title}
+            </h3>
+
+            <p className="text-slate-600 text-sm mb-6 leading-relaxed">
+              {selectedProject.description}
+            </p>
+
+            <div className="space-y-3 mb-6 bg-slate-50/70 p-4 rounded-xl border border-slate-100">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-700">
+                Detailed Implementation & Accomplishments:
+              </h4>
+              <ul className="space-y-2.5">
+                {selectedProject.bullets.map((b, i) => (
+                  <li key={i} className="flex items-start gap-2.5 text-sm text-slate-700 leading-relaxed">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                    <span>{b}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mb-6">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                Tech Stack Applied:
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {selectedProject.techStack.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs font-semibold"
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
+            </div>
 
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                {selectedProject.title}
-              </h3>
-
-              <p className="text-slate-600 text-sm mb-6 leading-relaxed">
-                {selectedProject.description}
-              </p>
-
-              <div className="space-y-3 mb-6">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-700">
-                  Detailed Implementation & Accomplishments:
-                </h4>
-                <ul className="space-y-2">
-                  {selectedProject.bullets.map((b, i) => (
-                    <li key={i} className="flex items-start gap-2 text-sm text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-                      <span>{b}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mb-6">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
-                  Tech Stack Applied:
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.techStack.map((tech, i) => (
-                    <span
-                      key={i}
-                      className="px-3 py-1 rounded-lg bg-indigo-50 text-indigo-700 border border-indigo-100 text-xs font-semibold"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-wrap gap-3 pt-4 border-t border-slate-100">
+            <div className="flex flex-wrap gap-3 pt-4 border-t border-slate-100">
+              {selectedProject.githubUrl && (
                 <a
                   href={selectedProject.githubUrl}
                   target="_blank"
@@ -213,6 +245,8 @@ export const Projects = ({
                   <Icons.Github className="w-4 h-4" />
                   <span>View Repository</span>
                 </a>
+              )}
+              {selectedProject.liveUrl && (
                 <a
                   href={selectedProject.liveUrl}
                   target="_blank"
@@ -222,13 +256,12 @@ export const Projects = ({
                   <ExternalLink className="w-4 h-4" />
                   <span>Live Platform Demo</span>
                 </a>
-              </div>
-
+              )}
             </div>
-          </div>
-        )}
 
-      </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
