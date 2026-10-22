@@ -90,3 +90,13 @@
 .modal-content-anim {
   animation: modalContentPop 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* Enhanced Screenshot Clarity & High DPI Rendering */
+.image-crisp {
+  image-rendering: auto;
+  image-rendering: -webkit-optimize-contrast;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  filter: contrast(1.02);
+}

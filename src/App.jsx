@@ -44,7 +44,7 @@ function App() {
           {/* About Section */}
           <About
             personalInfo={controller.personalInfo}
-            educationData={controller.educationData}
+            scrollTo={controller.scrollTo}
           />
 
           {/* Skills Section */}

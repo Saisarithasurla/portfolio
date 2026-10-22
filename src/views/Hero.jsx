@@ -5,8 +5,32 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 export const Hero = ({ personalInfo, scrollTo }) => {
   const [ref, isVisible] = useScrollReveal();
 
+  const titleText = personalInfo.title || "Full Stack Developer";
+  const [displayText, setDisplayText] = React.useState('');
+  const [isDeleting, setIsDeleting] = React.useState(false);
+
+  React.useEffect(() => {
+    const typingSpeed = isDeleting ? 45 : 95;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayText(titleText.substring(0, displayText.length + 1));
+        if (displayText.length + 1 === titleText.length) {
+          setTimeout(() => setIsDeleting(true), 2400);
+        }
+      } else {
+        setDisplayText(titleText.substring(0, displayText.length - 1));
+        if (displayText.length === 0) {
+          setIsDeleting(false);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, titleText]);
+
   return (
-    <section id="hero" className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+    <section id="hero" className="relative pt-28 pb-10 md:pt-36 md:pb-12 overflow-hidden">
       {/* Background ambient lighting orbs (clean indigo, soft blue & subtle violet) */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-200/50 rounded-full blur-3xl pointer-events-none animate-ambient-1" />
       <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-sky-200/40 rounded-full blur-3xl pointer-events-none animate-ambient-2" />
@@ -34,9 +58,13 @@ export const Hero = ({ personalInfo, scrollTo }) => {
               </span>
             </h1>
 
-            <p className="text-xl sm:text-2xl font-bold text-slate-800">
-              {personalInfo.title}
-            </p>
+            {/* Clean Typewriter Title without border and without dot */}
+            <div className="flex items-center justify-center lg:justify-start min-h-[38px]">
+              <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent tracking-tight inline-flex items-center">
+                <span>{displayText}</span>
+                <span className="w-[3px] h-7 bg-indigo-600 ml-1.5 rounded-full animate-pulse" />
+              </span>
+            </div>
 
             <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
               {personalInfo.tagline} Experienced in developing REST APIs, frontend & mobile systems with{' '}
@@ -170,7 +198,7 @@ export const Hero = ({ personalInfo, scrollTo }) => {
         </div>
 
         {/* Quick Numbers Bar */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
           {personalInfo.stats.map((stat, idx) => (
             <div
               key={idx}

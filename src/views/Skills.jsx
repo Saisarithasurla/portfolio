@@ -39,7 +39,7 @@ export const Skills = ({ skillsData }) => {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section id="skills" className="py-20 bg-slate-100/50 relative">
+    <section id="skills" className="py-12 md:py-16 bg-slate-100/50 relative">
       <div 
         ref={ref}
         className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}

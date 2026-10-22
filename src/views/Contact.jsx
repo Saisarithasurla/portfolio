@@ -13,7 +13,7 @@ export const Contact = ({
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section id="contact" className="py-20 bg-slate-100/60 relative">
+    <section id="contact" className="py-12 md:py-16 bg-slate-100/60 relative">
       <div 
         ref={ref}
         className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}

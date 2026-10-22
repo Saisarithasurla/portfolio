@@ -30,7 +30,7 @@ export const Navbar = ({ activeSection, scrollTo, mobileMenuOpen, setMobileMenuO
                 Sai Saritha
               </span>
               <span className="block text-xs text-indigo-600 font-mono font-semibold">
-                Full Stack Python Dev
+                Full Stack Developer
               </span>
             </div>
           </button>

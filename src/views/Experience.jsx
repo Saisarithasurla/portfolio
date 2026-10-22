@@ -6,7 +6,7 @@ export const Experience = ({ experiences }) => {
   const [ref, isVisible] = useScrollReveal();
 
   return (
-    <section id="experience" className="py-20 relative">
+    <section id="experience" className="py-12 md:py-16 relative">
       <div 
         ref={ref}
         className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}

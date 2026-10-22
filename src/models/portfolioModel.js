@@ -88,11 +88,20 @@ export const projects = [
   {
     id: "pgmove",
     title: "PGMove – PG Accommodation Booking Platform",
-    tagline: "Real-Time Client Project",
+    tagline: "Smart PG & Rental Management Platform",
     category: "Full Stack Web",
     featured: true,
+    image: "/projects/pgmove.png",
+    features: [
+      "Smart Property Search",
+      "Property Listings",
+      "Lead Management",
+      "Owner Dashboard",
+      "Rental Discovery",
+      "Instant Booking"
+    ],
     techStack: ["Next.js", "React.js", "TypeScript", "Supabase (PostgreSQL)", "Tailwind CSS"],
-    description: "A comprehensive full-stack PG accommodation booking platform enabling prospective tenants to discover rooms, filter amenities, schedule visits, and submit enquiries, backed by a powerful admin dashboard.",
+    description: "A modern marketplace connecting tenants with verified PGs, hostels, and rental accommodations, while providing property owners with automated listing tools and qualified lead generation.",
     bullets: [
       "Developed a responsive full-stack web application using Next.js, React.js, and TypeScript.",
       "Integrated Supabase (PostgreSQL) for property management, lead capture, and secure database operations.",
@@ -106,11 +115,20 @@ export const projects = [
   {
     id: "stayzy",
     title: "Stayzy – Property Management Platform",
-    tagline: "Real-Time Client Project",
+    tagline: "Advanced Co-Living Management System",
     category: "Mobile & Web",
     featured: true,
+    image: "/projects/stayzy.png",
+    features: [
+      "Tenant Management",
+      "Rent Collection",
+      "Digital Rental Agreements",
+      "Occupancy Management",
+      "Maintenance Requests",
+      "Mobile Application"
+    ],
     techStack: ["React Native", "JavaScript", "Tailwind CSS", "REST APIs", "Git", "GitHub"],
-    description: "Cross-platform mobile and web property management application engineered for property owners and tenants to effortlessly manage rent payments, complaints, and lease records.",
+    description: "A complete co-living and hostel management platform empowering property owners and residents to handle rent collection, digital lease agreements, and maintenance requests seamlessly.",
     bullets: [
       "Developed responsive and reusable UI components using React Native and React.js.",
       "Integrated frontend screens with backend REST APIs for seamless asynchronous data communication.",
@@ -124,9 +142,18 @@ export const projects = [
   {
     id: "brainspark",
     title: "BrainSpark – AI Content Generation Platform",
-    tagline: "Full Stack AI SaaS Application",
+    tagline: "Intelligent Generative AI Platform",
     category: "Full Stack AI",
     featured: true,
+    image: "/projects/brainspark.png",
+    features: [
+      "Contextual AI Prompts",
+      "Smart Content Generator",
+      "Django REST API Core",
+      "Prompt History Storage",
+      "MySQL Data Architecture",
+      "Fast Dynamic Interface"
+    ],
     techStack: ["React.js", "Django REST Framework", "Python", "MySQL", "Tailwind CSS"],
     description: "An AI-powered web platform that dynamically generates high-quality creative text and marketing content based on contextual prompts with user history management.",
     bullets: [
@@ -142,9 +169,18 @@ export const projects = [
   {
     id: "social-media-analysis",
     title: "Social Media Addiction Data Analysis",
-    tagline: "Data Analytics & Business Intelligence",
+    tagline: "Behavioral Analytics & Business Intelligence",
     category: "Data Analysis",
     featured: false,
+    image: "/projects/social-media-analytics.png",
+    features: [
+      "705+ Survey Analysis",
+      "Advanced MySQL Queries",
+      "Interactive Power BI Dashboard",
+      "Mental Health Correlations",
+      "Academic Impact Models",
+      "Trend Visualization"
+    ],
     techStack: ["MySQL", "Power BI", "Data Modeling"],
     description: "Data-driven research project examining social media screen time habits across 705+ university students and assessing the correlation with lifestyle health and academic metrics.",
     bullets: [
