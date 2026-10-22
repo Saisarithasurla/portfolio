@@ -9,10 +9,10 @@ export const EducationAndCerts = ({ educationData, certifications, codingProfile
     <section id="education" className="py-12 md:py-16 relative">
       <div 
         ref={ref}
-        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className={`text-center max-w-3xl mx-auto mb-16 space-y-3 reveal-fade ${isVisible ? 'revealed' : ''}`}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-200 text-xs font-semibold text-amber-700 uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             Qualifications & Credentials
@@ -27,8 +27,8 @@ export const EducationAndCerts = ({ educationData, certifications, codingProfile
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           
-          {/* Left Column: Education & Coding Profiles */}
-          <div className="lg:col-span-6 space-y-8">
+          {/* Left Column: Education & Coding Profiles - Slide from Left */}
+          <div className={`lg:col-span-6 space-y-8 reveal-left delay-150 ${isVisible ? 'revealed' : ''}`}>
             
             {/* Education Block */}
             <div className="glass-card-light rounded-2xl p-6 sm:p-8 space-y-6">
@@ -106,8 +106,8 @@ export const EducationAndCerts = ({ educationData, certifications, codingProfile
 
           </div>
 
-          {/* Right Column: Certifications */}
-          <div className="lg:col-span-6">
+          {/* Right Column: Certifications - Slide from Right */}
+          <div className={`lg:col-span-6 reveal-right delay-200 ${isVisible ? 'revealed' : ''}`}>
             <div className="glass-card-light rounded-2xl p-6 sm:p-8 space-y-6 h-full flex flex-col justify-between">
               
               <div>

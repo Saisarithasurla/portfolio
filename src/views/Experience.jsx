@@ -9,10 +9,10 @@ export const Experience = ({ experiences }) => {
     <section id="experience" className="py-12 md:py-16 relative">
       <div 
         ref={ref}
-        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className={`text-center max-w-3xl mx-auto mb-16 space-y-3 reveal-fade ${isVisible ? 'revealed' : ''}`}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-700 uppercase tracking-wider shadow-sm">
             <Briefcase className="w-3.5 h-3.5" />
             Work History
@@ -33,7 +33,10 @@ export const Experience = ({ experiences }) => {
 
           <div className="space-y-12">
             {experiences.map((exp, idx) => (
-              <div key={idx} className="relative sm:pl-20">
+              <div 
+                key={idx} 
+                className={`relative sm:pl-20 reveal-right delay-150 ${isVisible ? 'revealed' : ''}`}
+              >
                 
                 {/* Timeline Icon Node */}
                 <div className="hidden sm:flex absolute left-8 -translate-x-1/2 top-6 w-8 h-8 rounded-full bg-white border-2 border-indigo-600 items-center justify-center text-indigo-600 shadow-md shadow-indigo-600/20 z-10">

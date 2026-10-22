@@ -30,7 +30,7 @@ export const Hero = ({ personalInfo, scrollTo }) => {
   }, [displayText, isDeleting, titleText]);
 
   return (
-    <section id="hero" className="relative pt-28 pb-10 md:pt-36 md:pb-12 overflow-hidden">
+    <section id="hero" className="relative pt-24 pb-8 md:pt-28 md:pb-10 overflow-hidden">
       {/* Background ambient lighting orbs (clean indigo, soft blue & subtle violet) */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-200/50 rounded-full blur-3xl pointer-events-none animate-ambient-1" />
       <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-sky-200/40 rounded-full blur-3xl pointer-events-none animate-ambient-2" />
@@ -38,12 +38,12 @@ export const Hero = ({ personalInfo, scrollTo }) => {
 
       <div 
         ref={ref}
-        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 reveal-item ${isVisible ? 'revealed' : ''}`}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
           
-          {/* Main Hero Copy */}
-          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
+          {/* Main Hero Copy - Slide from Left */}
+          <div className={`lg:col-span-7 text-center lg:text-left space-y-4 md:space-y-5 reveal-left ${isVisible ? 'revealed' : ''}`}>
             
             {/* Status pill */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-mono text-emerald-700 shadow-sm">
@@ -51,7 +51,7 @@ export const Hero = ({ personalInfo, scrollTo }) => {
               <span className="font-semibold">Available for Full Stack Opportunities</span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.2] sm:leading-[1.15]">
               Hi, I'm{' '}
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 bg-clip-text text-transparent">
                 {personalInfo.name}
@@ -59,14 +59,14 @@ export const Hero = ({ personalInfo, scrollTo }) => {
             </h1>
 
             {/* Clean Typewriter Title without border and without dot */}
-            <div className="flex items-center justify-center lg:justify-start min-h-[38px]">
-              <span className="text-2xl sm:text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent tracking-tight inline-flex items-center">
+            <div className="flex items-center justify-center lg:justify-start min-h-[34px] sm:min-h-[38px]">
+              <span className="text-xl sm:text-3xl font-extrabold bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent tracking-tight inline-flex items-center">
                 <span>{displayText}</span>
-                <span className="w-[3px] h-7 bg-indigo-600 ml-1.5 rounded-full animate-pulse" />
+                <span className="w-[3px] h-6 sm:h-7 bg-indigo-600 ml-1.5 rounded-full animate-pulse" />
               </span>
             </div>
 
-            <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+            <p className="text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed px-1 sm:px-0">
               {personalInfo.tagline} Experienced in developing REST APIs, frontend & mobile systems with{' '}
               <span className="text-indigo-600 font-semibold">Django</span>,{' '}
               <span className="text-indigo-600 font-semibold">React.js</span>,{' '}
@@ -75,20 +75,20 @@ export const Hero = ({ personalInfo, scrollTo }) => {
             </p>
 
             {/* CTAs */}
-            <div className="pt-2 flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2.5 sm:gap-4 w-full sm:w-auto max-w-xs sm:max-w-none mx-auto lg:mx-0">
               <button
                 onClick={() => scrollTo('projects')}
-                className="px-6 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-600/25 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-md shadow-indigo-600/25 hover:shadow-indigo-600/35 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base"
               >
                 <span>View My Work</span>
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </button>
 
               <button
                 onClick={() => scrollTo('contact')}
-                className="px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold border border-slate-200 shadow-sm hover:border-slate-300 hover:-translate-y-0.5 transition-all flex items-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-semibold border border-slate-200 shadow-xs hover:border-slate-300 hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer text-xs sm:text-base"
               >
-                <Mail className="w-4 h-4 text-indigo-600" />
+                <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-600" />
                 <span>Contact Me</span>
               </button>
 
@@ -97,10 +97,10 @@ export const Hero = ({ personalInfo, scrollTo }) => {
                 target="_blank"
                 rel="noreferrer"
                 download="Sai_Saritha_Surla_Resume.pdf"
-                className="px-5 py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 transition-all flex items-center gap-2 text-sm font-semibold cursor-pointer shadow-xs"
+                className="w-full sm:w-auto px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 border border-slate-200 transition-all flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold cursor-pointer shadow-2xs"
                 title="Download Resume"
               >
-                <Download className="w-4 h-4 text-indigo-600" />
+                <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-600" />
                 <span>Download Resume</span>
               </a>
             </div>
@@ -119,8 +119,8 @@ export const Hero = ({ personalInfo, scrollTo }) => {
             </div>
           </div>
 
-          {/* Clean Interactive Code / Tech Card */}
-          <div className="lg:col-span-5">
+          {/* Clean Interactive Code / Tech Card - Slide from Right */}
+          <div className={`lg:col-span-5 reveal-right delay-150 ${isVisible ? 'revealed' : ''}`}>
             <div className="glass-card-light rounded-2xl p-6 border border-slate-200/90 relative shadow-xl overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-bl-full pointer-events-none" />
               
@@ -139,7 +139,7 @@ export const Hero = ({ personalInfo, scrollTo }) => {
               </div>
 
               {/* Code Snippet Box (Crisp dark code block for high readability & dev aesthetics) */}
-              <div className="my-4 p-4 rounded-xl bg-slate-900 font-mono text-xs sm:text-sm leading-relaxed text-slate-200 space-y-1 shadow-inner">
+              <div className="my-4 p-3.5 sm:p-4 rounded-xl bg-slate-900 font-mono text-[11px] sm:text-xs md:text-sm leading-relaxed text-slate-200 space-y-1 shadow-inner overflow-x-auto">
                 <div>
                   <span className="text-purple-400">class</span>{' '}
                   <span className="text-yellow-300 font-semibold">FullStackDeveloper</span>:
@@ -197,21 +197,24 @@ export const Hero = ({ personalInfo, scrollTo }) => {
 
         </div>
 
-        {/* Quick Numbers Bar */}
-        <div className="mt-8 md:mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
-          {personalInfo.stats.map((stat, idx) => (
-            <div
-              key={idx}
-              className="glass-card-light rounded-2xl p-5 text-center border border-slate-200 hover:border-indigo-300 transition-all duration-300 shadow-sm"
-            >
-              <div className="text-3xl sm:text-4xl font-extrabold text-indigo-600">
-                {stat.value}
+        {/* Quick Numbers Bar - Compact Staggered Upward Reveal */}
+        <div className="mt-6 md:mt-7 grid grid-cols-2 md:grid-cols-4 gap-3 max-w-5xl mx-auto">
+          {personalInfo.stats.map((stat, idx) => {
+            const delays = ['delay-150', 'delay-200', 'delay-250', 'delay-300'];
+            return (
+              <div
+                key={idx}
+                className={`glass-card-light rounded-xl py-3 px-3.5 text-center border border-slate-200/90 hover:border-indigo-300 transition-all duration-300 shadow-xs hover:shadow-sm reveal-scale ${delays[idx % 4]} ${isVisible ? 'revealed' : ''}`}
+              >
+                <div className="text-2xl sm:text-3xl font-extrabold text-indigo-600 tracking-tight">
+                  {stat.value}
+                </div>
+                <div className="mt-0.5 text-[11px] sm:text-xs font-semibold text-slate-600 leading-tight">
+                  {stat.label}
+                </div>
               </div>
-              <div className="mt-1 text-xs sm:text-sm font-semibold text-slate-600">
-                {stat.label}
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

@@ -30,36 +30,35 @@ export const skillsData = {
     {
       name: "Frontend Development",
       skills: [
+        { name: "Tailwind CSS", level: 95, icon: "Palette" },
+        { name: "HTML5 / CSS3", level: 95, icon: "Layout" },
         { name: "React.js", level: 90, icon: "Atom" },
         { name: "React Native", level: 85, icon: "Smartphone" },
-        { name: "Next.js", level: 80, icon: "Layers" },
-        { name: "Tailwind CSS", level: 95, icon: "Palette" },
-        { name: "HTML5 / CSS3", level: 95, icon: "Layout" }
+        { name: "Next.js", level: 70, icon: "Layers" }
       ]
     },
     {
       name: "Backend & APIs",
       skills: [
-        { name: "Django", level: 88, icon: "Server" },
+        { name: "RESTful API Design", level: 92, icon: "Network" },
         { name: "Django REST Framework", level: 90, icon: "Cpu" },
-        { name: "RESTful API Design", level: 92, icon: "Network" }
+        { name: "Django", level: 88, icon: "Server" }
       ]
     },
     {
       name: "Databases & Cloud",
       skills: [
-        { name: "PostgreSQL / Supabase", level: 85, icon: "Database" },
         { name: "MySQL", level: 88, icon: "Database" },
-        { name: "MongoDB", level: 75, icon: "Database" }
+        { name: "MongoDB", level: 75, icon: "Database" },
+        { name: "PostgreSQL / Supabase", level: 65, icon: "Database" }
       ]
     },
     {
       name: "Tools & Platforms",
       skills: [
-        { name: "Git & GitHub", level: 90, icon: "GitBranch" },
         { name: "Postman", level: 92, icon: "Send" },
-        { name: "VS Code", level: 95, icon: "Terminal" },
-        { name: "Netlify", level: 85, icon: "Cloud" }
+        { name: "Git & GitHub", level: 90, icon: "GitBranch" },
+        { name: "Netlify", level: 90, icon: "Cloud" }
       ]
     }
   ]

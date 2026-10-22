@@ -43,10 +43,10 @@ export const Projects = ({
     <section id="projects" className="py-12 md:py-16 bg-slate-100/50 relative">
       <div 
         ref={ref}
-        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 space-y-3">
+        <div className={`text-center max-w-3xl mx-auto mb-12 space-y-3 reveal-fade ${isVisible ? 'revealed' : ''}`}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-semibold text-blue-700 uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             Featured Projects
@@ -60,12 +60,12 @@ export const Projects = ({
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        <div className={`flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-10 sm:mb-12 reveal-up delay-100 ${isVisible ? 'revealed' : ''}`}>
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 selectedCategory === cat
                   ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
                   : 'bg-white text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-50 shadow-sm'
@@ -77,15 +77,16 @@ export const Projects = ({
         </div>
 
         {/* Project Showcase Cards (Alternating Layout) */}
-        <div className="space-y-10 sm:space-y-12">
+        <div className="space-y-8 sm:space-y-12">
           {projects.map((project, idx) => {
             const isReversed = idx % 2 === 1;
+            const cardAnim = isReversed ? 'reveal-right' : 'reveal-left';
 
             return (
               <div
                 key={project.id}
                 onClick={() => setSelectedProject(project)}
-                className="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-indigo-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(79,70,229,0.1)] hover:border-indigo-300 transition-all duration-300 relative group cursor-pointer"
+                className={`bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-10 lg:p-12 border border-indigo-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(79,70,229,0.1)] hover:border-indigo-300 transition-all duration-300 relative group cursor-pointer ${cardAnim} delay-150 ${isVisible ? 'revealed' : ''}`}
               >
                 <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center`}>
                   
@@ -107,29 +108,62 @@ export const Projects = ({
                       )}
                     </div>
 
-                    {/* Project Main Title (Clean & Prominent) */}
-                    <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors tracking-tight mb-2">
-                      {project.id === 'pgmove' ? 'PGMove.in' : project.id === 'stayzy' ? 'Stayzy.in' : project.title.split('–')[0].trim()}
-                    </h3>
-
-                    {/* Subtitle / Tagline uppercase (Vibrant Indigo) */}
-                    <p className="text-xs sm:text-sm font-extrabold text-indigo-600 uppercase tracking-wider mb-4">
-                      {project.tagline}
-                    </p>
+                    {/* Project Header Title (Full width on both mobile and desktop) */}
+                    <div className="mb-4">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 group-hover:text-indigo-600 transition-colors tracking-tight mb-1 sm:mb-2">
+                        {project.id === 'pgmove' ? 'PGMove.in' : project.id === 'stayzy' ? 'Stayzy.in' : project.title.split('–')[0].trim()}
+                      </h3>
+                      <p className="text-xs sm:text-sm font-extrabold text-indigo-600 uppercase tracking-wider">
+                        {project.tagline}
+                      </p>
+                    </div>
 
                     {/* Description Paragraph */}
                     <p className="text-slate-600 text-sm sm:text-base leading-relaxed mb-6 font-normal">
                       {project.description}
                     </p>
 
-                    {/* Compact 2-column feature checklist (matching reference UI) */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3.5 mb-8">
+                    {/* Mobile: Bullet Points alongside Image side-by-side neatly */}
+                    <div className="flex lg:hidden flex-row items-center gap-3 sm:gap-4 mb-6">
+                      {/* Left: Bullet Points */}
+                      <div className="flex-1 min-w-0 space-y-2 sm:space-y-2.5">
+                        {(project.features || project.bullets.slice(0, 6)).map((feature, fIdx) => (
+                          <div key={fIdx} className="flex items-start gap-1.5 sm:gap-2">
+                            <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-indigo-50 border border-indigo-200/80 flex items-center justify-center shrink-0 mt-0.5">
+                              <CheckCircle2 className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-indigo-600" />
+                            </span>
+                            <span className="text-xs sm:text-sm text-slate-700 font-medium leading-snug">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* Right: Larger Browser Preview Image beside points with increased width and height */}
+                      <div className="w-[56%] sm:w-[52%] max-w-[320px] shrink-0 rounded-xl overflow-hidden border border-slate-200/90 shadow-md bg-white self-center">
+                        <div className="bg-slate-100/90 px-2.5 py-1.5 border-b border-slate-200/80 flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <div className="relative bg-slate-50 overflow-hidden min-h-[145px] sm:min-h-[180px] flex items-center justify-center">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="w-full h-full min-h-[145px] sm:min-h-[180px] object-cover object-top hover:scale-[1.03] transition-transform duration-300"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Desktop: 2-column feature checklist */}
+                    <div className="hidden lg:grid grid-cols-2 gap-x-6 gap-y-3.5 mb-8">
                       {(project.features || project.bullets.slice(0, 6)).map((feature, fIdx) => (
                         <div key={fIdx} className="flex items-center gap-2.5">
                           <span className="w-5 h-5 rounded-full bg-indigo-50 border border-indigo-200/80 flex items-center justify-center shrink-0">
                             <CheckCircle2 className="w-3.5 h-3.5 text-indigo-600" />
                           </span>
-                          <span className="text-xs sm:text-sm text-slate-700 font-medium">
+                          <span className="text-sm text-slate-700 font-medium">
                             {feature}
                           </span>
                         </div>
@@ -137,13 +171,13 @@ export const Projects = ({
                     </div>
 
                     {/* Action Buttons: Clean Primary Visit button + Secondary buttons */}
-                    <div className="flex flex-wrap items-center gap-3" onClick={(e) => e.stopPropagation()}>
+                    <div className="flex flex-wrap items-center gap-2.5 sm:gap-3" onClick={(e) => e.stopPropagation()}>
                       {project.liveUrl && (
                         <a
                           href={project.liveUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm shadow-md shadow-indigo-600/30 hover:shadow-lg transition flex items-center gap-2 group/btn cursor-pointer"
+                          className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-indigo-600/30 hover:shadow-lg transition flex items-center gap-2 group/btn cursor-pointer"
                         >
                           <span>Visit {project.id === 'pgmove' ? 'PGMove.in' : project.id === 'stayzy' ? 'Stayzy.in' : project.title.split('–')[0].trim()} →</span>
                         </a>
@@ -154,7 +188,7 @@ export const Projects = ({
                           href={project.githubUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="px-5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm border border-slate-200 shadow-sm transition flex items-center gap-2 cursor-pointer"
+                          className="px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-800 font-bold text-xs sm:text-sm border border-slate-200 shadow-sm transition flex items-center gap-2 cursor-pointer"
                         >
                           <Icons.Github className="w-4 h-4" />
                           <span>Code Repository</span>
@@ -163,7 +197,7 @@ export const Projects = ({
 
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="px-4 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition flex items-center gap-1.5 cursor-pointer"
+                        className="px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs border border-slate-200 transition flex items-center gap-1.5 cursor-pointer"
                       >
                         <span>Full Architecture</span>
                         <ArrowUpRight className="w-3.5 h-3.5" />
@@ -172,8 +206,8 @@ export const Projects = ({
 
                   </div>
 
-                  {/* Left or Right Browser Image Mockup Column */}
-                  <div className={`lg:col-span-6 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
+                  {/* Left or Right Browser Image Mockup Column (Hidden on mobile as it is shown side-by-side above) */}
+                  <div className={`hidden lg:block lg:col-span-6 ${isReversed ? 'lg:order-1' : 'lg:order-2'}`}>
                     <div className="rounded-2xl overflow-hidden border border-slate-200/90 shadow-xl bg-white hover:border-indigo-300 transition-all duration-300 group/img">
                       
                       {/* Subtle Clean Header without any text */}
@@ -207,16 +241,16 @@ export const Projects = ({
       {/* Interactive Project Modal placed outside reveal container so it is fixed directly to screen */}
       {selectedProject && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm modal-backdrop-anim"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 bg-slate-900/60 backdrop-blur-sm modal-backdrop-anim"
           onClick={() => setSelectedProject(null)}
         >
           <div 
-            className="bg-white max-w-2xl w-full rounded-2xl p-6 sm:p-8 border border-slate-200/90 shadow-2xl relative max-h-[90vh] overflow-y-auto modal-content-anim my-auto"
+            className="bg-white max-w-2xl w-full rounded-2xl p-4 sm:p-8 border border-slate-200/90 shadow-2xl relative max-h-[92vh] overflow-y-auto modal-content-anim my-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button
               onClick={() => setSelectedProject(null)}
-              className="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 transition cursor-pointer z-10"
+              className="absolute top-4 right-4 sm:top-5 sm:right-5 p-1.5 sm:p-2 rounded-xl text-slate-500 hover:text-slate-800 bg-slate-100 hover:bg-slate-200 transition cursor-pointer z-10"
               aria-label="Close modal"
             >
               <X className="w-5 h-5" />

@@ -1,5 +1,4 @@
-// Controller: Business logic & state management for portfolio views
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   personalInfo,
   skillsData,
@@ -14,6 +13,48 @@ export function usePortfolioController() {
   // Navigation active section state
   const [activeSection, setActiveSection] = useState('hero');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Prevent background scrolling when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+  useEffect(() => {
+    const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 140; // account for navbar height and visual offset
+
+      // If at bottom of page, highlight contact
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+        setActiveSection('contact');
+        return;
+      }
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const id = sections[i];
+        const element = document.getElementById(id);
+        if (element) {
+          const top = element.offsetTop;
+          if (scrollPosition >= top) {
+            setActiveSection(id);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // initialize on mount
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   // Projects filtering state
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -48,8 +89,8 @@ export function usePortfolioController() {
     setContactForm(prev => ({ ...prev, [name]: value }));
   };
 
-  // Handle contact form submit
-  const handleContactSubmit = (e) => {
+  // Handle contact form submit via Web3Forms
+  const handleContactSubmit = async (e) => {
     e.preventDefault();
     if (!contactForm.name || !contactForm.email || !contactForm.message) {
       setFormStatus({ state: 'error', message: 'Please fill in all required fields.' });
@@ -58,15 +99,47 @@ export function usePortfolioController() {
 
     setFormStatus({ state: 'submitting', message: 'Sending message...' });
 
-    // Mock API call / Email submission
-    setTimeout(() => {
-      setFormStatus({
-        state: 'success',
-        message: 'Thank you! Your message has been received. I will get back to you shortly.'
+    // Web3Forms API Key (Loaded from .env VITE_WEB3FORMS_ACCESS_KEY or active key)
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || '740adcc9-d2ed-484b-bcdd-ee369caa84f2';
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          from_name: contactForm.name,
+          email: contactForm.email,
+          subject: contactForm.subject || `New Contact Message from ${contactForm.name}`,
+          message: contactForm.message
+        })
       });
-      setContactForm({ name: '', email: '', subject: '', message: '' });
-      setTimeout(() => setFormStatus({ state: 'idle', message: '' }), 5000);
-    }, 900);
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus({
+          state: 'success',
+          message: 'Thank you! Your message has been received. I will get back to you shortly.'
+        });
+        setContactForm({ name: '', email: '', subject: '', message: '' });
+        setTimeout(() => setFormStatus({ state: 'idle', message: '' }), 6000);
+      } else {
+        setFormStatus({
+          state: 'error',
+          message: data.message || 'Something went wrong. Please try again.'
+        });
+      }
+    } catch (error) {
+      console.error('Contact submission error:', error);
+      setFormStatus({
+        state: 'error',
+        message: 'Network error. Please check your internet connection or email directly.'
+      });
+    }
   };
 
   // Scroll to section helper with accurate navbar offset
@@ -75,11 +148,9 @@ export function usePortfolioController() {
     setMobileMenuOpen(false);
     const element = document.getElementById(id);
     if (element) {
-      // Find any inner reveal-item and immediately reveal it
-      const revealChild = element.querySelector('.reveal-item');
-      if (revealChild) {
-        revealChild.classList.add('revealed');
-      }
+      // Immediately reveal all animated children in the target section
+      const revealChildren = element.querySelectorAll('.reveal-item, .reveal-fade, .reveal-up, .reveal-left, .reveal-right, .reveal-scale');
+      revealChildren.forEach(child => child.classList.add('revealed'));
 
       const navHeight = 85;
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;

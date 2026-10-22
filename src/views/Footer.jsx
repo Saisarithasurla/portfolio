@@ -27,7 +27,7 @@ export const Footer = ({ personalInfo, scrollTo }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main Clean Multi-Column Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-12 border-b border-slate-100">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-slate-100">
           
           {/* Column 1: Brand & Bio (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
@@ -53,7 +53,7 @@ export const Footer = ({ personalInfo, scrollTo }) => {
             </p>
 
             {/* Social Icons Strip */}
-            <div className="flex items-center gap-2.5 pt-2">
+            <div className="flex items-center gap-2.5 pt-1">
               <a
                 href={personalInfo.github}
                 target="_blank"
@@ -89,111 +89,118 @@ export const Footer = ({ personalInfo, scrollTo }) => {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (2 cols) */}
-          <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
-              Quick Links
-            </h4>
-            <ul className="space-y-2.5 text-sm">
-              {mainPages.map((link) => (
-                <li key={link.id}>
-                  <button
-                    onClick={() => scrollTo(link.id)}
-                    className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all cursor-pointer font-medium"
+          {/* Column 2 & 3: Quick Links & Featured Work - Side by Side on Mobile */}
+          <div className="lg:col-span-5 grid grid-cols-2 gap-4 sm:gap-6">
+            {/* Quick Links */}
+            <div className="space-y-3 sm:space-y-4">
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
+                Quick Links
+              </h4>
+              <ul className="space-y-2 text-xs sm:text-sm">
+                {mainPages.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => scrollTo(link.id)}
+                      className="flex items-center gap-1.5 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all cursor-pointer font-medium text-left"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                      <span>{link.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Featured Work */}
+            <div className="space-y-3 sm:space-y-4">
+              <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
+                Featured Work
+              </h4>
+              <ul className="space-y-2 text-xs sm:text-sm">
+                <li>
+                  <a
+                    href="https://pgmove.in"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all font-medium"
                   >
-                    <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />
-                    <span>{link.label}</span>
+                    <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                    <span>PGMove</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://stayzzy.in/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all font-medium"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                    <span>Stayzy</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://brainspark-ai-saritha.netlify.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center gap-1.5 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all font-medium"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                    <span>BrainSpark AI</span>
+                  </a>
+                </li>
+                <li>
+                  <button
+                    onClick={() => scrollTo('education')}
+                    className="flex items-center gap-1.5 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all cursor-pointer font-medium text-left"
+                  >
+                    <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                    <span>Credentials</span>
                   </button>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: Featured Works (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
-              Featured Work
-            </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <a
-                  href="https://pgmove.in"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all font-medium"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>PGMove Platform</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://stayzzy.in/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all font-medium"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Stayzy Application</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://brainspark-ai-saritha.netlify.app/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all font-medium"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>BrainSpark AI Platform</span>
-                </a>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollTo('education')}
-                  className="flex items-center gap-2 text-slate-600 hover:text-indigo-600 hover:translate-x-1 transition-all cursor-pointer font-medium"
-                >
-                  <ChevronRight className="w-3.5 h-3.5 text-indigo-400" />
-                  <span>Education & Credentials</span>
-                </button>
-              </li>
-            </ul>
+              </ul>
+            </div>
           </div>
 
           {/* Column 4: Dedicated Contact & Reach Out (3 cols) */}
-          <div className="lg:col-span-3 space-y-4">
+          <div className="lg:col-span-3 space-y-3 sm:space-y-4">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wider font-mono">
               Contact & Reach Out
             </h4>
             
-            <div className="space-y-3 text-sm">
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 text-slate-700 hover:text-indigo-700 transition group shadow-2xs"
-              >
-                <Mail className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
-                <div className="text-xs">
-                  <span className="block font-bold text-slate-900 group-hover:text-indigo-700">Email Me</span>
-                  <span className="text-slate-800 font-mono font-medium truncate block max-w-[190px]">{personalInfo.email}</span>
-                </div>
-              </a>
+            <ul className="space-y-2 text-xs sm:text-sm">
+              <li className="flex items-center gap-1.5 text-slate-600 font-medium">
+                <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                <span className="text-slate-900 font-semibold">Email:</span>
+                <a
+                  href={`mailto:${personalInfo.email}`}
+                  className="text-slate-600 hover:text-indigo-600 hover:underline transition-colors font-mono"
+                  title="Send an Email"
+                >
+                  {personalInfo.email}
+                </a>
+              </li>
 
-              <a
-                href={`tel:${personalInfo.phone}`}
-                className="flex items-start gap-2.5 p-2.5 rounded-xl bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 text-slate-700 hover:text-indigo-700 transition group shadow-2xs"
-              >
-                <Phone className="w-4 h-4 text-indigo-600 mt-0.5 shrink-0" />
-                <div className="text-xs">
-                  <span className="block font-bold text-slate-900 group-hover:text-indigo-700">Call / Phone</span>
-                  <span className="text-slate-800 font-mono font-medium">{personalInfo.phone}</span>
-                </div>
-              </a>
+              <li className="flex items-center gap-1.5 text-slate-600 font-medium">
+                <ChevronRight className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
+                <span className="text-slate-900 font-semibold">Phone:</span>
+                <a
+                  href={`tel:${personalInfo.phone}`}
+                  className="text-slate-600 hover:text-indigo-600 hover:underline transition-colors font-mono"
+                  title="Make a Call"
+                >
+                  {personalInfo.phone}
+                </a>
+              </li>
 
-              <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] font-semibold text-emerald-800">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                <span>Open for Full-time Roles & Relocation</span>
-              </div>
-            </div>
+              <li className="pt-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-[11px] font-semibold text-emerald-800">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>Open for Full-time Roles & Relocation</span>
+                </div>
+              </li>
+            </ul>
           </div>
 
         </div>

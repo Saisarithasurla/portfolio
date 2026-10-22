@@ -39,10 +39,10 @@ export const About = ({ personalInfo }) => {
     <section id="about" className="py-12 md:py-16 relative">
       <div 
         ref={ref}
-        className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal-item ${isVisible ? 'revealed' : ''}`}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
       >
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <div className={`text-center max-w-3xl mx-auto mb-14 space-y-3 reveal-fade ${isVisible ? 'revealed' : ''}`}>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-xs font-semibold text-indigo-700 uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             About Me
@@ -57,8 +57,8 @@ export const About = ({ personalInfo }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
-          {/* Main About Story */}
-          <div className="lg:col-span-7 glass-card-light rounded-2xl p-6 sm:p-8 space-y-6">
+          {/* Main About Story - Slide from Left */}
+          <div className={`lg:col-span-7 glass-card-light rounded-2xl p-6 sm:p-8 space-y-6 reveal-left delay-100 ${isVisible ? 'revealed' : ''}`}>
             <div className="space-y-4">
               <h3 className="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
                 <User className="w-6 h-6 text-indigo-600" />
@@ -95,8 +95,8 @@ export const About = ({ personalInfo }) => {
             </div>
           </div>
 
-          {/* Right Column: Core Engineering Strengths */}
-          <div className="lg:col-span-5 glass-card-light rounded-2xl p-6 sm:p-8 space-y-4">
+          {/* Right Column: Core Engineering Strengths - Slide from Right */}
+          <div className={`lg:col-span-5 glass-card-light rounded-2xl p-6 sm:p-8 space-y-4 reveal-right delay-200 ${isVisible ? 'revealed' : ''}`}>
             <h4 className="text-xl font-bold text-slate-900 border-b border-slate-100 pb-4 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-indigo-600" />
               Core Engineering Strengths
